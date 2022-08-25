@@ -33,9 +33,7 @@ export const port = developmentNodeMode
   ? DEFAULT_PORT_IN_DEVELOPMENT
   : DEFAULT_PORT_IN_PRODUCTION
 
-export const clientDefaultPath = developmentNodeMode
-  ? CLIENT_PATH_IN_DEVELOPMENT
-  : CLIENT_PATH_IN_PRODUCTION
+export const clientBuildPath = process.env.CLIENT_BUILD_PATH
 
 export const host = developmentNodeMode
   ? `${DEFAULT_HOST_IN_DEVELOPMENT}${port}`

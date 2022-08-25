@@ -4,7 +4,7 @@ import express from 'express'
 import routes from './routes'
 import mongoose from 'mongoose'
 import {
-  clientDefaultPath,
+  clientBuildPath,
   GET_SMART_DATABASE,
   MONGO_DATABASE_CONECTION_URL
 } from './utils'
@@ -39,7 +39,7 @@ class App {
   middlewares() {
     this.server.use(cors())
     this.server.use(express.json())
-    this.server.use(express.static(path.join(__dirname, clientDefaultPath)))
+    this.server.use(express.static(path.join(__dirname, clientBuildPath)))
   }
 
   routes() {
