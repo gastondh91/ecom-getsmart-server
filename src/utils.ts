@@ -3,8 +3,6 @@ const {
   MONGODB_PRODUCTION_LOGIN_STRING,
   MONGODB_DEVELOPMENT_LOGIN_STRING,
   GET_SMART_DEFAULT_DATABASE_NAME,
-  CLIENT_PATH_IN_DEVELOPMENT,
-  CLIENT_PATH_IN_PRODUCTION,
   DEFAULT_HOST_IN_DEVELOPMENT,
   DEFAULT_HOST_IN_PRODUCTION,
   DEFAULT_PORT_IN_DEVELOPMENT,
@@ -34,6 +32,7 @@ export const port = developmentNodeMode
   : DEFAULT_PORT_IN_PRODUCTION
 
 export const clientBuildPath = process.env.CLIENT_BUILD_PATH
+console.log(clientBuildPath)
 
 export const host = developmentNodeMode
   ? `${DEFAULT_HOST_IN_DEVELOPMENT}${port}`
