@@ -3,6 +3,8 @@ import Fakedata from './models/categories'
 const routes = Router()
 
 routes.get('/api', async (_req, res) => {
+  console.log('hola')
+
   const categories = await Fakedata.find()
   const sortedCategories = categories.sort(a => {
     if (a.name === 'like new') return 1

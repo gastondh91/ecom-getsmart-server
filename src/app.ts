@@ -11,8 +11,6 @@ import {
 import path from 'path'
 const cors = require('cors')
 
-console.log({ clientBuildPath })
-
 try {
   // Connect to the MongoDB cluster
   mongoose.connect(
