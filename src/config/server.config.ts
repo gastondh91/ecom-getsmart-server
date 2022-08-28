@@ -31,7 +31,7 @@ export const createExpressAndGraphQLServer = async (
     ]
   })
   await server.start()
-  server.applyMiddleware({ app, cors })
+  server.applyMiddleware({ app, cors: { credentials: false, origin: '*' } })
   await new Promise<void>(resolve => httpServer.listen({ port }, resolve))
   console.log(`🚀 Server ready at ${host}`)
   console.log(`🚀 GraphQL Server ready at ${host}${server.graphqlPath}`)
