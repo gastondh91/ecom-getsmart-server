@@ -1,22 +1,17 @@
 import 'dotenv/config'
-import express from 'express'
-
-import routes from './routes'
-import mongoose from 'mongoose'
-import {
-  clientBuildPath,
-  GET_SMART_DATABASE,
-  MONGO_DATABASE_CONECTION_URL
-} from './utils'
 import path from 'path'
+import express from 'express'
+import mongoose from 'mongoose'
+
+import routes from './src/routes/categories'
+import { host, port, clientBuildPath } from './src/config/general.config'
+import { dbConnectionString } from './src/config/db.config'
 const cors = require('cors')
 
 try {
   // Connect to the MongoDB cluster
-  mongoose.connect(
-    MONGO_DATABASE_CONECTION_URL,
-    { dbName: GET_SMART_DATABASE },
-    () => console.log(' Mongoose is connected')
+  mongoose.connect(dbConnectionString, () =>
+    console.log(' Mongoose is connected')
   )
 } catch (e) {
   console.log('could not connect')
@@ -47,4 +42,6 @@ class App {
   }
 }
 
-export default new App().server
+console.log(`Server is running at ${host}`)
+
+new App().server.listen(port)

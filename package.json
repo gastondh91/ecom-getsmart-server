@@ -5,8 +5,8 @@
   "author": "Gaston d'Hiriart <gastondh91@gmail.com>",
   "scripts": {
     "build": "tsc --project ./",
-    "dev": "nodemon src/server.ts",
-    "prod": "node dist/server.js"
+    "dev": "nodemon app.ts",
+    "prod": "node dist/app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
