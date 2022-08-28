@@ -1,47 +1,21 @@
 import 'dotenv/config'
-import path from 'path'
-import express from 'express'
 import mongoose from 'mongoose'
-
-import routes from './src/routes/categories'
-import { host, port, clientBuildPath } from './src/config/general.config'
-import { dbConnectionString } from './src/config/db.config'
-const cors = require('cors')
+import { dbConnectionString, DB_NAME } from './src/config/db.config'
+import { createExpressAndGraphQLServer } from './src/config/server.config'
+import typeDefs from './src/graphql/typeDefs'
+import resolvers from './src/graphql/resolvers'
 
 try {
   // Connect to the MongoDB cluster
-  mongoose.connect(dbConnectionString, () =>
+  mongoose.connect(dbConnectionString, { dbName: DB_NAME }, () =>
     console.log(' Mongoose is connected')
   )
 } catch (e) {
-  console.log('could not connect')
+  console.error('could not connect')
 }
 
 const dbConnection = mongoose.connection
-dbConnection.on('error', err => console.log(`Connection error ${err}`))
+dbConnection.on('error', err => console.error(`Connection error ${err}`))
 dbConnection.once('open', () => console.log('Connected to DB!'))
 
-class App {
-  public server
-
-  constructor() {
-    this.server = express()
-
-    this.middlewares()
-    this.routes()
-  }
-
-  middlewares() {
-    this.server.use(cors())
-    this.server.use(express.json())
-    this.server.use(express.static(path.join(__dirname, clientBuildPath)))
-  }
-
-  routes() {
-    this.server.use(routes)
-  }
-}
-
-console.log(`Server is running at ${host}`)
-
-new App().server.listen(port)
+createExpressAndGraphQLServer(typeDefs, resolvers)
