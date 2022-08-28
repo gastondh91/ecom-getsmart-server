@@ -25,6 +25,7 @@ export const createExpressAndGraphQLServer = async (
     resolvers,
     csrfPrevention: true,
     cache: 'bounded',
+    introspection: true,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageLocalDefault({ embed: true })
