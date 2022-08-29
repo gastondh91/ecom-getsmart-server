@@ -1,4 +1,6 @@
+import { ObjectId } from 'mongodb'
+
 export interface ICategory {
   name: string
-  id: string
+  _id: ObjectId
 }
