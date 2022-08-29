@@ -7,7 +7,7 @@ import express from 'express'
 import http from 'http'
 import path from 'path'
 import { clientBuildPath, host, port } from './general.config'
-const cors = require('cors')
+import cors from 'cors'
 import { DocumentNode } from 'graphql'
 
 export const createExpressAndGraphQLServer = async (
@@ -32,7 +32,7 @@ export const createExpressAndGraphQLServer = async (
     ]
   })
   await server.start()
-  server.applyMiddleware({ app, cors: { credentials: false, origin: '*' } })
+  server.applyMiddleware({ app })
   await new Promise<void>(resolve => httpServer.listen({ port }, resolve))
   console.log(`🚀 Server ready at ${host}`)
   console.log(`🚀 GraphQL Server ready at ${host}${server.graphqlPath}`)
