@@ -1,3 +1,4 @@
-export interface ResponseError extends Error {
-  status?: number
+export interface ICategory {
+  name: string
+  id: string
 }
