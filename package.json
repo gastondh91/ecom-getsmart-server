@@ -5,8 +5,8 @@
   "author": "Gaston d'Hiriart <gastondh91@gmail.com>",
   "scripts": {
     "build": "tsc --project ./",
-    "dev": "nodemon app.ts",
-    "prod": "node dist/app.js"
+    "dev": "NODE_ENV=development nodemon app.ts",
+    "prod": "NODE_ENV=production node dist/app.js"
   },
   "dependencies": {
     "apollo-server-express": "^3.10.2",
